@@ -1,0 +1,142 @@
+%\documentclass[a4paper,twoside]{book}
+\documentclass{book}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,amsmath,amssymb}
+
+\title{Tesi}
+\author{Marco Miani}
+\date{bozza}
+
+\newcommand{\bbR}{\mathbb{R}}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+%\linespread{1.2}
+
+\chapter{Introduzione}
+Blablabla fatti generali e magari qualche nota storica
+
+
+
+
+\section{Idea di base}
+Consideriamo una regione di spazio $\Omega$, per comodità un disco in $\bbR^2$ o in $\bbR^3$, sia $\partial\Omega$ la sua frontiera.
+
+\section{Cosa si intende con "Essere visibile"}
+
+Supponiamo che un oggetto sia contenuto in $\Omega$ e che un osservatore esterno cerchi di costruire un immagine dell'oggetto utilizzando in qualche modo le onde elettromagnetiche. Supponiamo inoltre che l'osservatore possa muoversi solo all'esterno di $\Omega$ e possa agire solo su $\partial\Omega$.
+
+L'osservatore emette onde elettromagnetiche verso $\Omega$, l'oggetto reagisce allo stimolo in base alle sue specifiche caratteristiche, l'osservatore misura la "risposta" dell'oggetto e cerca di dedurne informazioni sulla struttura interna.
+
+Ad esempio l'osservatore illumina con una lampadina l'oggetto, questo assorbe i raggi luminosi e ne emette di nuovi (ad es. in base al suo colore) e l'osservatore li percepisce con gli occhi. In questo senso possiamo dire che l'osservatore $vede$ l'oggetto.
+
+\section{Cosa si intende con "Essere invisibile"}
+Prima di tutto dobbiamo definire cosa intendiamo quando diciamo che l'interno di $\Omega$ è "vuoto".
+
+Un materiale è detto $omogeneo$ se le sue proprietà fisiche sono uguali in ogni punto ed è detto $isotropo$ se non ha proprietà direzionali. Diremo che la regione $\Omega$ è vuota se l'interno di $\Omega$ è composto da un materiale conduttore omogeneo e isotropo.
+
+Ovviamente se poi mettiamo un oggetto all'interno di $\Omega$ (i.e sostituiamo il materiale di una regione $d\subset\Omega$ con un altro materiale) questo $potrebbe$ cambiare le sue proprietà elettriche e questa alterazione potrebbe essere sfruttata per ottenere informazioni sull'oggetto stesso.
+
+Ma se l'oggetto in questione fosse tale da non modificare le suddette proprietà, allora un'osservatore esterno vedrebbe $\Omega$ esattamente come lo vedrebbe se l'oggetto non fosse stato aggiunto. Quindi, di fatto, l'oggetto è invisibile.
+
+
+
+
+
+
+\chapter{Tomografia a impedenza elettrica}
+La tomografia ad impedenza elettrica è una tecnica nella quale si cerca di costruire un'immagine dell'interno di $\Omega$ applicando una corrente elettrica su $\partial\Omega$ e misurando poi il potenziale su $\partial\Omega$.
+
+Ad esempio in medicina questa tecnica viene utilizzata, applicando vari elettrodi, per ottenere immagini di cuore e polmoni.
+
+
+\section{Mappa Dirichlet-To-Neumann}
+Fissiamo $\sigma$, detta $conduttivita$ una funzione su $\Omega$ valori matriciali.
+
+Se all'interno di $\Omega$ non ci sono cariche sappiamo che il potenziale rispetta l'equazione di Laplace
+\begin{equation*}
+    \Delta V = 0
+\end{equation*}
+Data questa, è ben noto che imporre condizioni di Dirichlet cioè fissare $V|_{\partial\Omega}$ determina in modo unico $V$ su tutto $\Omega$ e di conseguenza anche la componente ortogonale a $\partial\Omega$ di $J$, data da  $\sigma\nabla V \cdot \hat n$  cioè le condizioni di Neumann.
+
+È quindi ben definita la mappa Dirichlet-to-Neumann $\Lambda_\sigma : {\partial\Omega}^* \rightarrow {\partial\Omega}^*$ che prende le condizioni di Dirichlet e restituisce le condizioni di Neumann.
+
+${\partial\Omega}^*$ è il duale di $\partial\Omega$, ad esempio $V|_{\partial\Omega}\in{\partial\Omega}^*$
+
+
+\section{Problema inverso di Calderon}
+Il problema inverso di Calderon risponde alla domanda: $\Lambda_\sigma$ determina $\sigma$? In generale la risposta è no ed è proprio questo che sfrutteremo durante la nostra trattazione.
+
+\textbf{Definizione:} Sia $D \subset \Omega$ fissato, e sia $\sigma_c$ una funzione a valori matriciali su $\Omega \setminus D$. Diciamo che $\sigma_c$ rende invisibile la regione $D$ se
+\begin{equation*}
+    \sigma_A(x) = \left\{\begin{array}{ll}
+         A(x) & x\in D\\
+         \sigma_c(x) & x\in \Omega\setminus D
+    \end{array}\right.
+\end{equation*}
+produce le stesse misure della regione uniforme con conduttività $\sigma_I \equiv 1$, indipendentemente dalla scelta di della conduttività $A$. Cioè $\Lambda_{\sigma_A} \equiv \Lambda_{\sigma_I}$  $\forall A$
+
+
+\subsection{Unicità della soluzione}
+
+\subsection{Caso isotropo}
+Se la conduttività è a valori scalari positivi e finiti, $\sigma$ è unico.
+\subsection{Caso anisotropo}
+Se invece è a valori matriciali, $\sigma$ non è unico.
+
+
+
+
+
+\chapter{Costruzione di un Cloaking approssimato}
+\section{Invarianza per cambio di variabili}
+Invarianza di
+\begin{equation}
+    \nabla \cdot (\sigma\nabla V) = 0
+\end{equation}
+per cambio di variabili
+
+\section{Cloaking per cambio di variabili}
+Si definisce una funzione differenziabile a pezzi che manda $B_\rho$ in $B_1$ e che lascia fisso $\partial\Omega$.
+
+Si fa il push-forward e si vede che funziona tutto bene.
+
+\subsection{Il potenziale all'interno della cloaked region}
+La funzione sopra citata ha una singolarità in 0 da aggiustare.
+
+\section{Un caso concreto}
+Un esempio concreto di funzione qui, magari con qualche immagine plottata con mathlab
+
+
+
+
+
+
+\chapter{Il cloaking perfetto}
+Si può fare il limite per $\rho$ che va a 0. Si può portare fino in fondo il conto in modo rigoroso
+
+Ci sono problemi fisici con la conduttività che va a 0 o a infinito in alcune direzioni.
+
+
+
+
+
+
+
+\chapter{Cloaking a frequenza non-zero}
+A frequenza non-zero diventa tutto molto più difficile, oltre a considerare $\sigma$ bisogna considerare anche $\mu$ e $\epsilon$. Tutte funzioni a valori matriciali.
+
+Non so se riuscirò davvero a dire qualcosa di sensato qui
+
+
+
+
+\chapter{Conclusioni}
+
+\end{document}

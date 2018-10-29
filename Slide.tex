@@ -1,0 +1,552 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{thmtools,thm-restate}
+\usepackage{bm}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{textpos}
+\usepackage{bbm}
+
+
+\usetheme{Madrid}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\de}{\partial}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\AAA}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Ft}{\widetilde{\F}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\1}{\mathbbm{1}}
+
+ 
+%Information to be included in the title page:
+\title{Sample title}
+\author[Marco Miani]{Candidato: Marco Miani\\ Relatore: Prof. Luigi Carlo Berselli}
+\institute{Università di Pisa}
+\date{26 ottobre 2018}
+ \title[Dal problema di Calder\'on al mantello di Harry Potter] %optional
+{Dal problema di Calder\'on al mantello di Harry Potter}
+
+\begin{document}
+ 
+\begin{frame}[plain]
+	\centering\includegraphics[scale=0.03]{logounipi.png}
+	\maketitle
+\end{frame}
+
+
+\begin{frame}{Premessa}
+Le equazioni di Maxwell determinano l'intera elettrodinamica.
+\[
+\left\{\begin{array}{l}
+         \nabla\cdot D = 4\pi\rho \\
+         \nabla \times E = - \frac{1}{c}\frac{\de B}{\de t} \\
+         \nabla\cdot B = 0 \\
+         \nabla \times H = \frac{4\pi}{c}J + \frac{1}{c}\frac{\de D}{\de t} 
+    \end{array}\right.
+\]
+e valgono le relazioni
+\[
+D=\epsilon E
+\qquad
+\mu H=B
+\qquad
+J=\sigma E
+\]
+Quindi $\sigma,\epsilon,\mu:\bbR^3\rightarrow\mathfrak{M}_{3\times 3}(\bbR)$ sono gli unici parametri rilevanti.
+\end{frame}
+
+
+\begin{frame}{Il problema dell'elettrostatica}
+Sia $\Omega\subset\bbR ^n$ un compatto, la nostra regione di misura.
+
+\pause
+Sia $\sigma: \Omega \rightarrow\mathfrak{M}_{n\times n}(\bbR)$ una condicibilità elettrica\pause, cioè t.c.
+\begin{itemize}
+\item $\sigma(x)^T=\sigma(x) \qquad \forall x\in\Omega;$
+\pause
+\item $\langle\sigma(x)\xi,\xi\rangle \geq 0 \qquad \forall\xi\in\bbR^n ,\, \forall x\in\Omega.$
+\end{itemize}
+
+\vspace{10pt}
+\pause
+In assenza di cariche in $\Omega$ il potenziale elettrico $u$ è soluzione di
+\begin{equation*}
+\left\{ \begin{array}{ll}
+         \nabla\cdot(\sigma\nabla u)=0 & \text{in } \Omega \\
+         u|_{\de\Omega}=f
+    \end{array}
+\right.
+\end{equation*}
+quando imponiamo condizioni di Dirichlet $f\in H^{1/2}(\de\Omega)$.
+\end{frame}
+
+
+\begin{frame}{Il problema inverso di Calder\'on}
+\begin{block}{Definizione}
+Assegnata una conducibilità $\sigma$ definiamo la mappa Dirichlet-To-Neumann
+\begin{equation*}
+\Lambda_\sigma :\quad u|_{\de\Omega} \longmapsto (\sigma\nabla u)\cdot \textbf{n} |_{\de\Omega}.
+\end{equation*}
+\end{block}
+\pause
+\vspace{20pt}
+Il problema di Calder\'on consiste nel chiedersi se la mappa
+\[ \mathcal{C} : \quad \Lambda_\sigma \longmapsto \sigma \]
+sia ben definita.
+
+\pause
+La risposta, come vedremo, è in generale negativa.
+\end{frame}
+
+
+\begin{frame}{Tomografia ad Impedenza Elettrica}
+\begin{block}{Caso isotropo}
+%Se si assume che la conducibilità sia isotropa, finita e strettamente positiva 
+Se si hanno $\sigma_i:\Omega\rightarrow(0,+\infty)$ per $i=1,2$, vale
+\[
+\Lambda_{\sigma_1} = \Lambda_{\sigma_2} \quad\Longrightarrow\quad \sigma_1=\sigma_2
+\]
+La mappa $\mathcal{C}$ è quindi ben definita in questo caso.
+\end{block}
+Questo costituisce il fondamento della Tomografia ad Impedenza Elettrica.
+
+\pause
+\centering
+%\includegraphics[width=0.7\linewidth]{EIT.png}
+\begin{picture}(80,105)%
+    \put(-100,0){\includegraphics[width=0.3\linewidth]{EIT1.png}}%
+    \put(43,65){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathcal{C}$}}}%
+    \put(38,55){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\longrightarrow$}}}%
+    \put(80,0){\includegraphics[width=0.3\linewidth]{EIT2.png}}%
+\end{picture}
+\end{frame}
+
+
+\begin{frame}{Tomografia ad Impedenza Elettrica - Esempi espliciti}
+Per $\alpha\geq0$ e $0<\rho<1$ consideriamo la conducibilità nella palla $B_1\subset\bbR^2$
+\begin{equation*}
+\sigma_{\alpha,\rho}(x) = 
+	\left\{\begin{array}{lll}
+         \alpha & & \text{se } x\in B_\rho \\
+         1 & & \text{se } x\in B_1 \setminus B_\rho
+    \end{array}\right..
+\end{equation*}
+\vspace{-15pt}
+\pause
+\begin{block}{Caso $\alpha=0$}
+\[
+\Lambda_{\sigma_{0,\rho}}(f) = 
+\sum_{k\in\mathbb{Z}\setminus\{0\}} |k|\frac{1-\rho^{2|k|}}{1+\rho^{2|k|}} \hat{f}_k e^{ik\theta} 
+\]
+\end{block}
+\pause
+\begin{block}{Caso $\alpha=\infty$}
+\[
+\Lambda_{\sigma_{\infty,\rho}}(f) = 
+\sum_{k\in\mathbb{Z}\setminus\{0\}} |k|\frac{1+\rho^{2|k|}}{1-\rho^{2|k|}} \hat{f}_k e^{ik\theta}
+\]
+\end{block}
+\pause
+dove $\hat{f}_k = \frac{1}{2\pi} \int_0^{2\pi} f(\theta)e^{-ik\theta} \diff\theta.$
+\end{frame}
+
+
+\begin{frame}{Invarianza per cambio di variabili}
+\pause
+\begin{block}{Teorema (del cambio di variabili)}
+Sia $F:\overline{\Omega}\rightarrow\overline{\Omega}$ un diffeomorfismo $C^1$ tale che $F|_{\de\Omega}=Id$.\pause
+
+Sia $\tilde{\sigma}$ il push-forward di $\sigma$ tramite $F$
+\[ \tilde{\sigma}(y):=F_*\sigma(y)=\frac{(DF(x))^T\sigma(x)(DF(x))}{\det(DF(x))}\Bigg|_{x=F^{-1}(y)}.
+\]\pause
+Allora vale
+%\begin{Large}
+\[ \Lambda_{\tilde{\sigma}} = \Lambda_\sigma ,\]
+%\end{Large}
+cioè le due conducibilità sono assolutamente indistinguibili tramite sole misurazioni esterne.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Invarianza per cambio di variabili - Idea dimostrazione}
+\pause
+\begin{block}{Definizioni}
+Sia\onslide<4,5>{no} $\mathcal{Q}_\sigma: H^{1/2}(\de\Omega) \rightarrow \bbR$ \onslide<4,5>{\quad e $\mathcal{P}_\sigma(u): H^1(\Omega)\rightarrow\bbR$ date da}
+\vspace{-5pt}
+\[
+\mathcal{Q}_\sigma(f) := \int_{\de\Omega} f\,\Lambda_\sigma(f) \diff S
+\qquad
+\onslide<4,5>{\mathcal{P}_\sigma(u) :=\int_\Omega \langle \sigma \nabla u, \nabla u \rangle \diff x}
+\]
+\end{block}
+\pause
+\begin{block}{Lemma}
+Sia $\Omega\subset\bbR^n$ un compatto e siano $\sigma$ e $\eta$ due conducibilità su $\Omega$. Vale
+\vspace{-10pt}
+\[
+\mathcal{Q}_{\sigma} = \mathcal{Q}_{\eta}  \quad\Longleftrightarrow\quad  \Lambda_\sigma = \Lambda_\eta.
+\]
+\end{block}
+\pause
+\pause
+\begin{block}{Lemma}
+Data $f\in H^{1/2}(\de\Omega)$ le seguenti condizioni su $u\in H^1(\Omega)$ sono equivalenti:
+\vspace{-5pt}
+\[
+\left\{\begin{array}{lll}
+         \nabla\cdot(\sigma\nabla u) =0& & \text{in }\Omega \\
+         u|_{\de\Omega}=f & & 
+    \end{array}\right.,
+\qquad\qquad
+\mathcal{P}_\sigma(u)=\min_{v\in H^1(\Omega), v|_{\de\Omega}=f} \mathcal{P}_\sigma(v).
+\]
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Costruzione Cloaking non singolare}
+Consideriamo $\Omega=B_2$.
+
+\pause
+\vspace{10pt}
+Prendiamo un qualsiasi oggetto contenuto nella palla di raggio $1$ e sia $\OO: B_1\rightarrow \mathfrak{M}_{n\times n}(\bbR)$ la sua conducibilità in ciascun punto.
+
+\vspace{10pt}
+\onslide<3>{Per nascondere l'oggetto supponiamo di avvolgerlo con un guscio sferico $B_2\setminus B_1$  con una conducibilità ancora da stabilire.}
+\vspace{-40pt}
+\begin{columns}
+\begin{column}{0.4 \textwidth}
+\[ 
+\qquad\sigma_\OO(x) = 
+	\left\{\begin{array}{lll}
+         \OO(x) & & \text{se } x\in B_1 \\
+         \onslide<3>{\AAA(x) & & \text{se } x\in B_2\setminus B_1}
+    \end{array}\right.
+\]
+\end{column}
+\begin{column}{0.6 \textwidth}
+\begin{figure}[H]
+%\def\svgwidth{0.8\linewidth}
+\begin{picture}(200,200)%
+    \put(70,45){\includegraphics[width=0.6\linewidth]{cerchi.jpg}}%
+    \put(130,120){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\OO(x)$}}}%
+    \onslide<3>{\put(140,150){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\AAA(x)$}}}}%
+\end{picture}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Costruzione Cloaking non singolare}
+Fissiamo un parametro $0<\rho<1$ e consideriamo la seguente funzione radiale $\F_\rho:\overline{B_2}\rightarrow \overline{B_2}$
+\begin{equation*}
+\F_\rho(x) = 
+	\left\{\begin{array}{lll}
+         \frac{x}{\rho} & & \text{se } x\in B_\rho \\
+         \left(1+\frac{|x|-\rho}{2-\rho}\right)\frac{x}{|x|} & & \text{se } x\in \overline{B_2}\setminus B_\rho
+    \end{array}\right..
+\end{equation*}
+\pause
+\begin{figure}[H]
+%\def\svgwidth{0.8\linewidth}
+\begin{picture}(100,100)%
+    \put(-100,0){\includegraphics[width=0.3\linewidth]{AABcerchiPRE.jpg}}%
+    \put(43,75){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Ft_\rho$}}}%
+    \put(40,60){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\longrightarrow$}}}%
+    \put(100,0){\includegraphics[width=0.3\linewidth]{AABcerchiPOST.jpg}}%
+\end{picture}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Costruzione Cloaking non singolare}
+Sia $\1:\overline{B_2}\setminus B_\rho \rightarrow \bbR$ la conducibilità isotropa che vale identicamente $1$.
+\pause
+\begin{block}{Situazione effettiva}
+\begin{equation*}
+\sigma_\OO(x) = 
+	\left\{\begin{array}{lll}
+         \OO(x) & & \text{se } x\in B_1 \\ \pause
+         \left(\Ft_\rho|_{B_2\setminus B_\rho}\right)_*\!\1\,(x) & & \text{se } x\in \overline{B_2}\setminus B_1
+    \end{array}\right.
+\end{equation*}
+\end{block}
+\pause
+\begin{block}{Situazione apparente}
+\begin{equation*}
+(\Ft_\rho^{-1})_*\sigma_\OO(x) = 
+	\left\{\begin{array}{lll}
+         \left(\Ft_\rho^{-1}|_{B_1}\right)_*\!\OO\,(x) & & \text{se } x\in B_\rho \\
+         \1(x) & & \text{se } x\in \overline{B_2}\setminus B_\rho
+    \end{array}\right.
+\end{equation*}
+\end{block}
+\pause
+Per il Teorema sull'invarianza per cambio di variabili concludiamo che 
+\[
+\Lambda_{\sigma_\OO} = \Lambda_{(\Ft_\rho^{-1})_*\sigma_\OO}.
+\]
+\end{frame}
+
+
+\begin{frame}{Stima bontà della soluzione}
+\begin{block}{Definizione}
+Sia $\Vert \,.\, \Vert$ la norma sugli operatori $\Lambda: H^{1/2}(\de\Omega) \rightarrow H^{-1/2}(\de\Omega)$ data da
+\[
+\Vert\Lambda_\sigma\Vert := \sup\left\{|\mathcal{Q}_\sigma(f)|   :\,\Vert f\Vert_{H^{1/2}(\de\Omega)}\leq1\right\}.
+\]
+\end{block}
+
+\pause
+\begin{block}{Lemma}
+Date $\sigma$ e $\eta$ conducibilità, cioè funzioni su $\Omega$ a valori matriciali simmetrici
+\[ 
+	\left. \begin{array}{c}
+         \langle\sigma(x)\xi,\xi\rangle \;\le\; \langle\eta(x)\xi,\xi\rangle \\
+         \forall x\in\Omega, \forall\xi\in\mathbb{R}^n
+    \end{array}
+\right|\implies
+	\begin{array}{c}
+         \mathcal{Q}_\sigma(f) \le \mathcal{Q}_\eta(f) \qquad \forall f\in H^{1/2}(\de\Omega)
+    \end{array}.
+\]
+\end{block}
+\pause
+\[
+\langle\sigma_{0,\rho}(x)\xi,\xi\rangle 
+\,\le\, 
+\langle(\Ft_\rho^{-1})_*\sigma_\OO(x)\xi,\xi\rangle 
+\,\le\, 
+\langle\sigma_{\infty,\rho}(x)\xi,\xi\rangle
+\qquad
+         \forall x\in\Omega, \forall\xi\in\mathbb{R}^n.
+\]
+\end{frame}
+
+
+\begin{frame}{Stima bontà della soluzione}
+In dimensione 2 si può calcolare esplicitamente la norma di $\Lambda_{\sigma_{0,\rho}}\!\!- \Lambda_\1$ e $\Lambda_{\sigma_{\infty,\rho}}\!\!- \Lambda_\1$, ma in generale vale
+\pause
+\begin{block}{Teorema}
+Sia $B_1\subset\bbR^n$ la palla di raggio $1$ con conducibilità $\sigma_{\alpha,\rho}$ definita prima, per ogni $n$ esiste una costante $C>0$ tale che
+\[
+\Vert\Lambda_{\sigma_{0,\rho}} - \Lambda_\1\Vert \le C\rho^n\Vert\Lambda_\1\Vert
+\]
+\[
+\Vert\Lambda_{\sigma_{\infty,\rho}} - \Lambda_\1\Vert \le C\rho^n\Vert\Lambda_\1\Vert.
+\]
+\end{block}
+\pause
+e grazie all'ordinamento otteniamo che per ogni conducibilità $\OO(x)$
+\[
+\Vert\Lambda_{\sigma_\OO} - \Lambda_\1\Vert
+\le
+C\rho^n\Vert\Lambda_\1\Vert
+\]
+\end{frame}
+
+
+\begin{frame}{Studio degli autovalori}
+\begin{columns}
+\begin{column}{.05 \textwidth}
+\end{column}
+\begin{column}{.4 \textwidth}
+Consideriamo il caso in dimensione 2 e guardiamo $\F_\rho$ in coordinate polari
+\[
+\F_\rho\big((r,\theta)\big) = (\R_\rho(r),\theta).
+\]
+\end{column}
+\pause
+\begin{column}{.6 \textwidth}
+\begin{figure}[H]
+\def\svgwidth{\linewidth}
+\input{drawing.pdf_tex}
+\end{figure}
+\end{column}
+\end{columns}
+
+%\vspace{-30pt}
+\pause
+\hrule
+\vspace{10pt}
+Il push-forward della conducibilità $\1$ è
+\[
+\F_*\1\big((r,\theta)\big) = 
+\frac{(D\F)^T(D\F)}{\det(D\F)} \circ \F^{-1} (r,\theta)
+=
+	\left(
+		\begin{array}{cc}
+         \R'\big(\R^{-1}(r)\big)  &  0 \\
+         0  &  \frac{1}{\R'\big(\R^{-1}(r)\big)}
+    	\end{array}
+    \right).
+\]
+\end{frame}
+
+
+\begin{frame}{Cloaking Singolare}
+\pause
+Facciamo il limite puntuale di $\F_\rho$ per $\rho\rightarrow0$, questo limite esiste ovunque ad esclusione del punto $0$. 
+\pause
+Otteniamo $\F:\overline{B_2}\setminus\{0\} \rightarrow \overline{B_2}\setminus \overline{B_1}$ data da
+\[
+\F(x):
+=\lim_{\rho\rightarrow0}\F_\rho(x)
+= \left(1 + \frac{|x|}{2}\right) \frac{x}{|x|}.
+\]
+\pause
+Questo non è più nemmeno un diffeomorfismo di $\overline{B_2}$ in se, e quindi non possiamo più utilizzare il Teorema sul cambio di variabili.
+\end{frame}
+
+
+\begin{frame}{Condizioni necessarie}
+\pause
+\begin{block}{Teorema (Astali, Päivärinta)}
+Sia $\Omega\subset\bbR^2$ un dominio con frontiera $C^3$, siano $\sigma, \eta \in C^3(\Omega)$ due conducibilità anisotrope, finite e strettamente positive.\\ \pause
+Se vale
+\[
+\Lambda_{\sigma} = \Lambda_{\eta}
+\]
+allora esiste un diffeomorfismo $\F:\Omega\rightarrow\Omega$ con $\F|_{\de\Omega}=Id$ tale che
+\[
+\sigma=F_*\eta.
+\]
+\end{block}
+\pause
+Questo teorema è stato dimostrato anche in dimensione $n\geq3$ da Lee e Uhlmann con l'ipotesi aggiuntiva che la frontiera e le conducibilità siano analitiche.
+\end{frame}
+
+
+\begin{frame}{Costruzione Cloaking singolare}
+\begin{block}{Teorema}
+Sia $\F: \overline{B_2}\setminus\{0\} \rightarrow  \overline{B_2}\setminus \overline{B_1}$ radiale un diffeomorfismo $C^\infty$ tale che $\F|_{\de\Omega}=Id$, tale che $\lim_{|y|\rightarrow1} (\F_*\mathbbm{1}(y))\textbf{n} = 0$ e tale che $D\F(x)\geq c_0I$.\pause
+
+Sia $\sigma_\OO$ definita da
+\[
+\sigma_\OO(x) = 
+	\left\{\begin{array}{lll}
+         \OO(x) & & \text{se } x\in B_1 \\
+         \F_*\1(x) & & \text{se } x\in B_2\setminus B_1
+    \end{array}\right.,
+\]
+con $\OO(x)$ arbitrario ma finito e strettamente positivo.\pause
+
+Allora vale
+%\begin{Large}
+\[ \Lambda_{\sigma_\OO} = \Lambda_\1 ,\]
+%\end{Large}
+cioè le due conducibilità sono assolutamente indistinguibili tramite sole misurazioni esterne.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Costruzione Cloaking singolare - Idea dimostrazione}
+\pause
+Il sistema
+\begin{equation*}
+\left\{ \begin{array}{ll}
+         \nabla\cdot(\sigma_\OO\nabla v)=0 & \text{in } \Omega \\
+         v|_{\de\Omega}=f
+    \end{array}
+\right.
+\end{equation*}
+\pause
+ammette come unica soluzione
+\begin{equation*}
+v(y) = 
+	\left\{\begin{array}{lll}
+         w(\F^{-1}(y)) & & \text{per } y\in B_2\setminus B_1 \\
+         w(0) & & \text{per } y\in B_1
+    \end{array}\right.,
+\end{equation*}
+con $w$ funzione armonica con le stesse condizioni di Dirichlet, cioè
+\[
+\nabla\cdot\nabla w=0 \text{ in }B_2 
+\qquad
+\qquad
+\qquad
+w=f \text{ in }\de B_2.
+\]
+\end{frame}
+
+
+\begin{frame}{Generalizzazione a forme arbitrarie}
+\begin{block}{Teorema}
+Sia $\Omega\subset\bbR^n$ un compatto connesso. Sia $\mathcal{G}:B_2\rightarrow\Omega$ una mappa Lipschitziana con inversa Lipschitziana e sia $D:=\mathcal{G}(B_1)$. \pause Allora $\mathcal{H}:=\mathcal{G}\circ\F\circ\mathcal{G}^{-1}: \Omega\rightarrow\Omega$ agisce come l'identità su $\de\Omega$ mentre espande il punto $z_0=\mathcal{G}(0)$ a tutto $D$. Sia $\sigma_\OO:\Omega\rightarrow\mathfrak{M}_{n\times n}(\bbR)$ definita da
+\[
+\sigma_\OO(x) = 
+	\left\{\begin{array}{lll}
+         \OO(x) & & \text{se } x\in D \\
+         \mathcal{H}_*\1(x) & & \text{se } x\in \Omega\setminus D
+    \end{array}\right.,
+\]
+con $\OO(x)$ arbitrario ma finito e strettamente positivo. \pause
+
+Allora la mappa Dirichlet-To-Neumann $\Lambda_{\sigma_\OO}$ è indipendente da $\OO(x)$ e vale
+%\begin{Large}
+\[ \Lambda_{\sigma_\OO} = \Lambda_\1 ,\]
+%\end{Large}
+cioè le due conducibilità sono assolutamente indistinguibili tramite sole misurazioni esterne.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Conclusioni}
+\pause
+Supponiamo di costruire il nostro cloaking singolare nel guscio sferico $B_{R_2}\setminus B_{R_1}$ e che valga $R_1,R_2>>\lambda$, dove $\lambda$ è la lunghezza d'onda. Con questa ipotesi possiamo rappresentare il vettore di Poynting.
+\pause
+\begin{figure}[h] 
+\centering 
+\includegraphics[width=0.8\linewidth]{sweg.png}
+\caption{Immagini ottenute da Pendry, Schurig e Smith tramite integrazione numerica delle equazioni di Maxwell}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Bibliografia}
+%\bibliography{Bibliografia}
+\bibliographystyle{abbrv}
+%\nocite{*}
+
+\begin{thebibliography}{99} 
+\bibitem{HarryPotter} Kurt Brian, Tanya Leise, \textit{Impedance Imaging, Inverse Problems, and Harry Potter's Cloak}. (2009)
+
+\bibitem{1} Kari Astala and Lassi Päivärinta, \textit{Calderón's Inverse Conductivity Problem in the Plane}. Annals of Mathematics, vol. 163, no. 1, 2006, pp. 265–299.
+
+\bibitem{4} John M. Lee and Gunther Uhlmann, \textit{Determining anisotropic real‐analytic conductivities by boundary measurements}. (1989) Comm. Pure Appl. Math., 42: 1097-1112.
+
+\bibitem{5} J. B. Pendry, D. Schurig, D. R. Smith, \textit{Controlling Electromagnetic Fields}
+
+\bibitem{7} D. Schurig, J. J. Mock, B. J. Justice, S. A. Cummer, J. B. Pendry, A. F. Starr, D. R. Smith, \textit{Metamaterial Electromagnetic Cloak at Microwave Frequencies}. Science 10 Nov 2006 : 977-980
+
+\end{thebibliography}
+\end{frame}
+
+
+
+
+\end{document}
